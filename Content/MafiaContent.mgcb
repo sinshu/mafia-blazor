@@ -1,0 +1,110 @@
+#----------------------------- Global Properties ----------------------------#
+
+/outputDir:bin/$(Platform)
+/intermediateDir:obj/$(Platform)
+/platform:BlazorGL
+/config:
+/profile:Reach
+/compress:True
+
+#---------------------------------- Content ---------------------------------#
+
+#begin mafia.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyEnabled=False
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Color
+/build:mafia.png
+#end
+
+/copy:mafia.mp3
+
+#begin jump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/build:jump.wav
+#end
+
+#begin tiun.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/build:tiun.wav
+#end
+
+#begin coin.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/build:coin.wav
+#end
+
+#begin switch.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/build:switch.wav
+#end
+
+#begin boxmove.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/build:boxmove.wav
+#end
+
+#begin boxfall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/build:boxfall.wav
+#end
+
+#begin lift.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/build:lift.wav
+#end
+
+#begin spring.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/build:spring.wav
+#end
+
+#begin fall.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/build:fall.wav
+#end
+
+#begin ue.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/build:ue.wav
+#end
+
+#begin hyakuyen.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/build:hyakuyen.wav
+#end
+
+#begin stiana.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/build:stiana.wav
+#end
+
+/copy:stage0.stg
+/copy:stage1.stg
+/copy:stage2.stg
+/copy:stage3.stg
+/copy:stage4.stg
+/copy:stage5.stg
+/copy:stage6.stg
+/copy:stage7.stg
+/copy:stage8.stg
+/copy:stage9.stg
+/copy:stage10.stg
+/copy:stage11.stg
+/copy:stage12.stg
+/copy:stage13.stg
+/copy:stage14.stg

@@ -18,7 +18,7 @@ namespace Mafia
             this.app = app;
 
             sprite = new SpriteBatch(app.Graphics.GraphicsDevice);
-            texture = MafiaLoader.DefaultLoader.GetTexture(app.Graphics.GraphicsDevice, "mafia.png");
+            texture = app.Content.Load<Texture2D>("mafia");
             renderTarget = new RenderTarget2D(app.Graphics.GraphicsDevice, Mafia.SCREEN_WIDTH, Mafia.SCREEN_HEIGHT);
         }
 
@@ -41,6 +41,8 @@ namespace Mafia
 
             app.Graphics.GraphicsDevice.SetRenderTarget(null);
 
+            app.Graphics.GraphicsDevice.Clear(Color.Black);
+
             sprite.Begin(SpriteSortMode.Immediate,
                 BlendState.Opaque,
                 SamplerState.PointClamp,
@@ -52,10 +54,15 @@ namespace Mafia
             var windowWidth = app.GraphicsDevice.PresentationParameters.BackBufferWidth;
             var windowHeight = app.GraphicsDevice.PresentationParameters.BackBufferHeight;
 
-            sprite.Draw(
-                renderTarget,
-                new Rectangle(0, 0, windowWidth, windowHeight),
-                Color.White);
+            float scale = Math.Min(
+                (float)windowWidth / Mafia.SCREEN_WIDTH,
+                (float)windowHeight / Mafia.SCREEN_HEIGHT);
+            int width = (int)(Mafia.SCREEN_WIDTH * scale);
+            int height = (int)(Mafia.SCREEN_HEIGHT * scale);
+            int x = (windowWidth - width) / 2;
+            int y = (windowHeight - height) / 2;
+
+            sprite.Draw(renderTarget, new Rectangle(x, y, width, height), Color.White);
 
             sprite.End();
         }

@@ -1,13 +1,10 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 
 namespace Mafia
 {
     public class MafiaInput : IDisposable
     {
-        private MafiaApplication app;
-
         private KeyboardState keyboardState;
 
         private bool left;
@@ -24,10 +21,8 @@ namespace Mafia
         private bool prevSpace;
         private bool prevEsc;
 
-        public MafiaInput(MafiaApplication app)
+        public MafiaInput()
         {
-            this.app = app;
-
             prevLeft = prevUp = prevRight = prevDown = false;
             prevSpace = false;
             prevEsc = false;

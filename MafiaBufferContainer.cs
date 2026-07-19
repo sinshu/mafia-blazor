@@ -1,5 +1,4 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 
 namespace Mafia
@@ -21,20 +20,18 @@ namespace Mafia
 
         public MafiaBufferContainer(MafiaApplication app)
         {
-            MafiaLoader loader = MafiaLoader.DefaultLoader;
-
-            Jump = loader.GetBuffer("jump.wav");
-            Tiun = loader.GetBuffer("tiun.wav");
-            Coin = loader.GetBuffer("coin.wav");
-            Switch = loader.GetBuffer("switch.wav");
-            BoxMove = loader.GetBuffer("boxmove.wav");
-            BoxFall = loader.GetBuffer("boxfall.wav");
-            Lift = loader.GetBuffer("lift.wav");
-            Spring = loader.GetBuffer("spring.wav");
-            Fall = loader.GetBuffer("fall.wav");
-            Ue = loader.GetBuffer("ue.wav");
-            Hyakuyen = loader.GetBuffer("hyakuyen.wav");
-            Stiana = loader.GetBuffer("stiana.wav");
+            Jump = app.Content.Load<SoundEffect>("jump");
+            Tiun = app.Content.Load<SoundEffect>("tiun");
+            Coin = app.Content.Load<SoundEffect>("coin");
+            Switch = app.Content.Load<SoundEffect>("switch");
+            BoxMove = app.Content.Load<SoundEffect>("boxmove");
+            BoxFall = app.Content.Load<SoundEffect>("boxfall");
+            Lift = app.Content.Load<SoundEffect>("lift");
+            Spring = app.Content.Load<SoundEffect>("spring");
+            Fall = app.Content.Load<SoundEffect>("fall");
+            Ue = app.Content.Load<SoundEffect>("ue");
+            Hyakuyen = app.Content.Load<SoundEffect>("hyakuyen");
+            Stiana = app.Content.Load<SoundEffect>("stiana");
         }
 
         public void Dispose()

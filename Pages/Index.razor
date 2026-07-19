@@ -1,0 +1,42 @@
+@page "/"
+@page "/index.html"
+@implements IDisposable
+@inject IJSRuntime JsRuntime
+
+<PageTitle>Mafia</PageTitle>
+
+<div id="canvasHolder">
+    <canvas id="theCanvas" aria-label="Mafia game" tabindex="0"></canvas>
+</div>
+
+@code {
+    private MafiaApplication game;
+    private DotNetObjectReference<Index> selfReference;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            selfReference = DotNetObjectReference.Create(this);
+            JsRuntime.InvokeVoidAsync("mafia.start", selfReference);
+        }
+    }
+
+    [JSInvokable]
+    public void Tick()
+    {
+        if (game == null)
+        {
+            game = new MafiaApplication();
+            game.Run();
+        }
+
+        game.Tick();
+    }
+
+    public void Dispose()
+    {
+        game?.Dispose();
+        selfReference?.Dispose();
+    }
+}

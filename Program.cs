@@ -1,15 +1,25 @@
-﻿using System;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Mafia
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static async Task Main(string[] args)
         {
-            using (var app = new MafiaApplication(new string[0]))
+            var builder = WebAssemblyHostBuilder.CreateDefault(args);
+            builder.RootComponents.Add<App>("#app");
+            builder.RootComponents.Add<HeadOutlet>("head::after");
+            builder.Services.AddScoped(_ => new HttpClient
             {
-                app.Run();
-            }
+                BaseAddress = new Uri(builder.HostEnvironment.BaseAddress)
+            });
+
+            await builder.Build().RunAsync();
         }
     }
 }

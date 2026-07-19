@@ -6,14 +6,10 @@ namespace Mafia
 {
     public class MafiaSound : IDisposable
     {
-        private MafiaApplication app;
-
         private MafiaBufferContainer buffers;
 
         public MafiaSound(MafiaApplication app)
         {
-            this.app = app;
-
             buffers = new MafiaBufferContainer(app);
         }
 
@@ -90,6 +86,8 @@ namespace Mafia
 
         public void Dispose()
         {
+            buffers?.Dispose();
+            buffers = null;
         }
     }
 }

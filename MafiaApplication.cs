@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Drawing;
-using System.IO;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace Mafia
 {
@@ -18,61 +16,31 @@ namespace Mafia
         private MafiaVideo video;
         private MafiaSound sound;
         private MafiaInput input;
-        private XNAMP3 music;
+        private Song music;
 
         private TitleScene title;
         private SelectScene select;
         private GameScene game;
 
-        private int numStages;
-        private string[] stagePath;
         private Stage[] stages;
         private int currentStageIndex;
 
         private int state;
 
-        public MafiaApplication(string[] stagePath)
+        public MafiaApplication()
         {
             graphics = new GraphicsDeviceManager(this);
-
-            numStages = Mafia.NUM_STAGES + stagePath.Length;
-            this.stagePath = stagePath;
-        }
-
-        protected override void Initialize()
-        {
-            var display = graphics.GraphicsDevice.DisplayMode;
-
-            graphics.PreferredBackBufferWidth = display.Width;
-            graphics.PreferredBackBufferHeight = display.Height;
-            graphics.IsFullScreen = true;
-            graphics.ApplyChanges();
-
-            base.Initialize();
+            Content.RootDirectory = "Content";
         }
 
         protected override void LoadContent()
         {
-            stages = new Stage[numStages];
-            for (int i = 0; i < numStages; i++)
+            stages = new Stage[Mafia.NUM_STAGES];
+            for (int i = 0; i < stages.Length; i++)
             {
-                if (i < Mafia.NUM_STAGES)
-                {
-                    stages[i] = MafiaLoader.DefaultLoader.GetStage("stage" + i + ".stg");
-                }
-                else
-                {
-                    stages[i] = MafiaLoader.DefaultLoader.GetStage(stagePath[i - Mafia.NUM_STAGES]);
-                }
+                stages[i] = StageLoader.Load($"stage{i}.stg");
             }
-            if (stagePath.Length == 0)
-            {
-                currentStageIndex = 0;
-            }
-            else
-            {
-                currentStageIndex = Mafia.NUM_STAGES;
-            }
+            currentStageIndex = 0;
 
             title = new TitleScene();
             select = new SelectScene(stages, 0);
@@ -81,8 +49,10 @@ namespace Mafia
 
             video = new MafiaVideo(this);
             sound = new MafiaSound(this);
-            input = new MafiaInput(this);
-            music = MafiaLoader.DefaultLoader.GetMusic("mafia.mp3");
+            input = new MafiaInput();
+            music = Song.FromUri("mafia", new Uri("Content/mafia.mp3", UriKind.Relative));
+            MediaPlayer.Volume = 0.9f;
+            MediaPlayer.IsRepeating = true;
 
             base.LoadContent();
         }
@@ -107,6 +77,8 @@ namespace Mafia
                 input = null;
             }
 
+            MediaPlayer.Stop();
+
             base.UnloadContent();
         }
 
@@ -116,9 +88,9 @@ namespace Mafia
             {
                 case TITLE_SCENE:
                     {
-                        if (music.State == SoundState.Playing)
+                        if (MediaPlayer.State == MediaState.Playing)
                         {
-                            music.Stop();
+                            MediaPlayer.Stop();
                         }
                         switch (title.Tick(input.GetCurrentTitleInput()))
                         {
@@ -131,7 +103,6 @@ namespace Mafia
                                 break;
 
                             case TitleScene.EXIT:
-                                Exit();
                                 break;
                         }
                     }
@@ -161,9 +132,9 @@ namespace Mafia
                     break;
 
                 case GAME_SCENE:
-                    if (music.State != SoundState.Playing)
+                    if (MediaPlayer.State != MediaState.Playing)
                     {
-                        music.Play();
+                        MediaPlayer.Play(music);
                     }
                     {
                         switch (game.Tick(input.GetCurrentGameInput()))
@@ -179,7 +150,7 @@ namespace Mafia
 
                             case GameScene.CLEAR_GAME:
                                 sound.StopSounds();
-                                currentStageIndex = (currentStageIndex + 1) % numStages;
+                                currentStageIndex = (currentStageIndex + 1) % stages.Length;
                                 game = stages[currentStageIndex].CreateGame();
                                 break;
 
