@@ -29,3 +29,13 @@ Deploy the contents of `bin/Release/net8.0/publish/wwwroot` to any static web ho
 For a smaller production download, optionally install the WebAssembly build tools once with `dotnet workload install wasm-tools` before publishing.
 
 Source assets live in `Content`. They are compiled or copied into `wwwroot/Content` automatically during the build.
+
+## GitHub Pages
+
+Every push to `main` is built and deployed automatically by GitHub Actions.
+
+One-time repository setting: select **Settings > Pages > Build and deployment > Source > GitHub Actions**.
+
+The published game is available at:
+
+https://sinshu.github.io/mafia-blazor/
