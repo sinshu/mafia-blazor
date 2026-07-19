@@ -1,41 +1,47 @@
-# Mafia for the web
+# Mafia ブラウザ版
 
-An old platform game ported to the browser with [KNI Engine](https://github.com/kniEngine/kni) and Blazor WebAssembly.
+昔制作したプラットフォームゲームを、[KNI Engine](https://github.com/kniEngine/kni)とBlazor WebAssemblyでブラウザ向けに移植したものです。
 
-## Run locally
+## 🎮 ブラウザで遊ぶ
 
-Requirements: [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
+### [ゲームを起動する](https://sinshu.github.io/mafia-blazor/)
+
+ダウンロードやインストールは不要です。PCのブラウザからそのまま遊べます。
+
+## 操作方法
+
+- 矢印キー：移動・選択
+- `A`、`S`、`Z`、左Shift、左Ctrl、Enter、Space：ジャンプ・決定
+- Escape：戻る
+
+## ローカルで起動する
+
+事前に[.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)をインストールしてください。
 
 ```powershell
 dotnet run
 ```
 
-Open the URL printed in the terminal. The game must be served over HTTP; opening a generated HTML file directly does not work.
+ターミナルに表示されたURLをブラウザで開きます。生成されたHTMLファイルを直接開いても動作しないため、必ずHTTPサーバー経由で起動してください。
 
-## Controls
-
-- Arrow keys: move and select
-- `A`, `S`, `Z`, left Shift, left Ctrl, Enter, or Space: jump / confirm
-- Escape: back
-
-## Publish
+## 公開用ファイルを生成する
 
 ```powershell
 dotnet publish -c Release
 ```
 
-Deploy the contents of `bin/Release/net8.0/publish/wwwroot` to any static web host. The host must serve unknown file extensions such as `.wasm`, `.dll`, `.dat`, `.json`, `.xnb`, and `.stg` without rewriting them to `index.html`.
+生成された`bin/Release/net8.0/publish/wwwroot`の中身を静的Webホスティングサービスへ配置します。ホスティング側では、`.wasm`、`.dll`、`.dat`、`.json`、`.xnb`、`.stg`などの拡張子を持つファイルを`index.html`へ書き換えず、そのまま配信できる必要があります。
 
-For a smaller production download, optionally install the WebAssembly build tools once with `dotnet workload install wasm-tools` before publishing.
+配信サイズを小さくしたい場合は、公開前に一度だけ次のコマンドでWebAssemblyビルドツールをインストールできます。
 
-Source assets live in `Content`. They are compiled or copied into `wwwroot/Content` automatically during the build.
+```powershell
+dotnet workload install wasm-tools
+```
 
-## GitHub Pages
+素材ファイルは`Content`にあります。ビルド時に自動でコンパイルまたはコピーされ、`wwwroot/Content`へ配置されます。
 
-Every push to `main` is built and deployed automatically by GitHub Actions.
+## GitHub Pagesへの公開
 
-One-time repository setting: select **Settings > Pages > Build and deployment > Source > GitHub Actions**.
+`main`ブランチへpushすると、GitHub Actionsによって自動的にビルド・公開されます。
 
-The published game is available at:
-
-https://sinshu.github.io/mafia-blazor/
+リポジトリで初回のみ、GitHubの「Settings」→「Pages」→「Build and deployment」→「Source」を「GitHub Actions」に設定する必要があります。
