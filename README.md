@@ -19,7 +19,7 @@
 事前に[.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)をインストールしてください。
 
 ```powershell
-dotnet run
+dotnet run --project src/Mafia/Mafia.csproj
 ```
 
 ターミナルに表示されたURLをブラウザで開きます。生成されたHTMLファイルを直接開いても動作しないため、必ずHTTPサーバー経由で起動してください。
@@ -27,10 +27,10 @@ dotnet run
 ## 公開用ファイルを生成する
 
 ```powershell
-dotnet publish -c Release
+dotnet publish src/Mafia/Mafia.csproj -c Release
 ```
 
-生成された`bin/Release/net8.0/publish/wwwroot`の中身を静的Webホスティングサービスへ配置します。ホスティング側では、`.wasm`、`.dll`、`.dat`、`.json`、`.xnb`、`.stg`などの拡張子を持つファイルを`index.html`へ書き換えず、そのまま配信できる必要があります。
+生成された`src/Mafia/bin/Release/net8.0/publish/wwwroot`の中身を静的Webホスティングサービスへ配置します。ホスティング側では、`.wasm`、`.dll`、`.dat`、`.json`、`.xnb`、`.stg`などの拡張子を持つファイルを`index.html`へ書き換えず、そのまま配信できる必要があります。
 
 配信サイズを小さくしたい場合は、公開前に一度だけ次のコマンドでWebAssemblyビルドツールをインストールできます。
 
@@ -38,7 +38,7 @@ dotnet publish -c Release
 dotnet workload install wasm-tools
 ```
 
-素材ファイルは`Content`にあります。ビルド時に自動でコンパイルまたはコピーされ、`wwwroot/Content`へ配置されます。
+素材ファイルは`src/Mafia/Content`にあります。ビルド時に自動でコンパイルまたはコピーされ、`wwwroot/Content`へ配置されます。
 
 ## GitHub Pagesへの公開
 

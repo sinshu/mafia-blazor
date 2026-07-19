@@ -33,10 +33,10 @@ jobs:
           dotnet-version: 8.0.x
 
       - name: Restore dependencies
-        run: dotnet restore Mafia.csproj
+        run: dotnet restore src/Mafia/Mafia.csproj
 
       - name: Publish game
-        run: dotnet publish Mafia.csproj -c Release -o publish --no-restore
+        run: dotnet publish src/Mafia/Mafia.csproj -c Release -o publish --no-restore
 
       - name: Disable Jekyll processing
         shell: pwsh
