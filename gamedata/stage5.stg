@@ -1,0 +1,33 @@
+﻿スイッチとドア
+30
+40
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a  D   D   D   D   D   D   D   D       a
+aL20   1   0   1   0   1   0   1    B  a
+a                                      a
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa  a
+a      a   a   a                       a
+a C    a   a   a                       a
+a      a   a   a                       a
+a      D   D   D                       a
+a      1   0   1                       a
+a    S       S                        Ca
+aaaaaaaa   aaaaaL9                  aaaa
+aaaaaaaa   aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaa   aaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a      D   D    aaa                    a
+a      0   1  C aaa                    a
+a        H      aaa                    a
+a      aaaaaaaaaaaa                    a
+a      aaaaaaaaaaaa                    a
+a      aaaaaaaaaaaa                    a
+a      D   D   D                    C  a
+a  B L20   1   0 B                     a
+a        S   S                         a
+a S aaaaaaaaaaaaaaa               aaaaaa
+aaaaaaaaaaaaaaaaaaa               aaaaaa
+aaaaaaaaaaaaaaaaaaa               aaaaaa
+a      D   D   D                  aaaaaa
+a P    0   1   0                  aaaaaa
+a 1  S   S   S                    aaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
