@@ -8,6 +8,6 @@ namespace Mafia
         public const int SCREEN_HEIGHT = 240;
         public const int BLOCK_WIDTH = 16;
         public const int SOUND_RANGE = 320;
-        public const int NUM_STAGES = 15;
+        public const int NUM_STAGES = 16;
     }
 }
